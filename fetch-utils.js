@@ -25,10 +25,14 @@ export function checkAuth() {
 }
 
 export async function signUpUser(email, password) {
-    return await client.auth.signUp({
+    const response = await client.auth.signUp({
         email,
         password,
     });
+    const user = await getUser();
+    await client.from('chat_profiles').insert({ user_name: email, id: user.id });
+    
+    return response;
 }
 
 export async function signInUser(email, password) {
@@ -55,4 +59,13 @@ export async function readComments() {
 
 function checkError({ data, error }) {
     return error ? console.error(error) : data;
+}
+
+export async function updateName(name) {
+    const user = getUser();
+
+    const response = await client.from('chat_profiles').update({ user_name: name }).match({ id: user.id });
+
+    console.log(response);
+    return response;
 }

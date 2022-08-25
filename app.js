@@ -51,4 +51,4 @@ function renderChat(chat) {
 }
 
 
-console.log(user.email);
+console.log(user);
