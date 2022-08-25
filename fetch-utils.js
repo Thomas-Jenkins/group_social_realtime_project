@@ -43,3 +43,7 @@ export async function signOutUser() {
 }
 
 /* Data functions */
+export async function insertChat(chatValue) {
+    const response = await client.from('chat_comments').insert(chatValue);
+    return response;
+}
