@@ -1,4 +1,4 @@
-import { updateName } from '../fetch-utils.js';
+import { updateName, getUser, upsert } from '../fetch-utils.js';
 
 
 const nameButtonEl = document.querySelector('#name-button');
@@ -13,5 +13,9 @@ nameButtonEl.addEventListener('click', async () => {
 
 avatarButtonEl.addEventListener('click', async () => {
     const avatarInputEl = document.querySelector('#avatar-input');
-    console.log(avatarInputEl);
-})
+    const user = getUser();
+    const imageName = avatarInputEl.value;
+    const imageFile = `${user.id}/${avatarInputEl.files[0]}`;
+    console.log('img', imageName);
+    await upsert(imageName, imageFile);
+});

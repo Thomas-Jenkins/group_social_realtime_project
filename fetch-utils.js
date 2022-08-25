@@ -70,16 +70,17 @@ export async function updateName(name) {
     return response;
 }
 
-export async upsert(imageName, imageFile) {
+export async function upsert(imageName, imageFile) {
     const bucket = client.storage.from('avatar');
 
-    const { data, error} = await bucket.upload(imageName, imageFile, { cacheControl: "3600", upsert: true });
+    const { data, error } = await bucket.upload(imageName, imageFile, { cacheControl: '3600', upsert: true });
 
     if (error) {
         console.log(error);
         return null;
     }
 
-    const url = `${SUPABASE_URL}/storage/v1/object/public/${data.Key}`
+    const url = `${SUPABASE_URL}/storage/v1/object/public/${data.Key}`;
+    
     return url;
 }
