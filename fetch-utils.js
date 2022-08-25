@@ -45,5 +45,14 @@ export async function signOutUser() {
 /* Data functions */
 export async function insertChat(chatValue) {
     const response = await client.from('chat_comments').insert(chatValue);
-    return response;
+    return checkError(response);
+}
+
+export async function readComments() {
+    const response = await client.from('chat_comments').select('*');
+    return checkError(response);
+}
+
+function checkError({ data, error }) {
+    return error ? console.error(error) : data;
 }
