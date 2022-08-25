@@ -25,6 +25,7 @@ chatButtonEl.addEventListener('click', async () => {
     const chatEntry = { contents: chatValue, username: user.email };
     const response = await insertChat(chatEntry);
     displayAllChats();
+    chatInputEl.reset();
     return response;
 });
 

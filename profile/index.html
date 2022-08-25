@@ -22,7 +22,8 @@
         <img class="logo" src="/assets/html_css_js.png">
         <p class="title">User Profile</p>
         <nav>
-            <a id="sign-out-link" href="auth">Sign Out</a>
+            <a id="sign-out-link" href="../auth">Sign Out</a>
+            <a id="home-link" href="../">Home</a>
         </nav>
     </header>
 
@@ -33,6 +34,15 @@
 
             </label>
             <button id="name-button">Enter Name</button>
+            <label>Avatar
+                <input   
+                type="file"
+                id="avatar-input"
+                placeholder="upload avatar"
+                accept="image/*"
+                required />
+            </label>
+            <button id="avatar-button">Submit Avatar</button>
         </div>
     </main>
 
