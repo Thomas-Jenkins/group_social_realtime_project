@@ -2,7 +2,7 @@
 // working with supabase:
 
 
-import { checkAuth, signOutUser, getUser, insertChat, readComments, } from './fetch-utils.js';
+import { checkAuth, signOutUser, getUser, insertChat, readComments, handleNewComments} from './fetch-utils.js';
 // pure rendering (data --> DOM):
 
 /*  "boiler plate" auth code */
@@ -12,7 +12,7 @@ checkAuth();
 const user = checkAuth();
 
 displayAllChats();
-
+handleNewComments();
 // sign out link:
 const signOutLink = document.getElementById('sign-out-link');
 signOutLink.addEventListener('click', signOutUser);

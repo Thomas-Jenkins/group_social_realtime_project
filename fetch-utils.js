@@ -89,5 +89,6 @@ export async function upsert(imageName, imageFile) {
     return url;
 }
 
-
-const { chat_comments } = await client.from('chat_comments').on('INSERT', handleInserts).subscribe();
+export async function handleNewComments(handleInserts){
+    await client.from('chat_comments').on('INSERT', handleInserts).subscribe();
+}
