@@ -13,10 +13,11 @@
         href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;600&family=Titillium+Web:wght@200;400;600&display=swap">
     <link rel="stylesheet" href="styles/reset.css" />
     <link rel="stylesheet" href="styles/global.css" />
-    <title>Supabase Web App</title>
+    <title>Live Chat</title>
 </head>
 
 <body>
+
     <header class="page-header">
         <img class="logo" src="/assets/html_css_js.png">
         <p class="title">Supabase Web App</p>
@@ -26,7 +27,33 @@
     </header>
 
     <main>
+        <section id="main-board">
+            <h1 id="title" class="box">
+                Live Chat
+            </h1>
+            <div id="bottom" class="box">
+                <div id="chat-box" class="box">
+                    <div id="live-chat" class="box">
 
+                    </div>
+                    <div id="chat-input-el" class="box">
+                        <input id="chat-input" type="text">
+                        <button id="chat-button">Send</button>
+                    </div>
+                </div>
+                <div id="nav" class="box">
+                    <a href="./profile/index.html">
+                        <button id="edit-profile">
+                            Edit Profile
+                        </button>
+                    </a>
+                    <button id="log-out">
+                        Log out
+                    </button>
+
+                </div>
+            </div>
+        </section>
     </main>
 
     <footer>&copy;2022 Alchemy Software Developer</footer>

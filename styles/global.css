@@ -52,3 +52,32 @@ footer {
     justify-content: flex-end;
     background-color: var(--footer-background);
 }
+.box {
+    border: solid;
+}
+#main-board {
+    display: grid;
+    grid-template-rows: 10% 90%;
+    height: 600px;
+    width: 800px;
+    border: solid;
+}
+#title {
+    margin: 0;
+    padding: 0;
+}
+#bottom {
+    display: grid;
+    grid-template-columns: 80% 20%;
+
+}
+#chat-box {
+    display: grid;
+    grid-template-rows: 80% 20%;
+}
+#nav {
+    display: grid;
+}
+#live-chat {
+    overflow: scroll;
+}

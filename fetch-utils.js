@@ -1,9 +1,13 @@
-const SUPABASE_URL = '';
-const SUPABASE_KEY = '';
+const SUPABASE_URL = 'https://sushgnkqkgfdkwxudpdy.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InN1c2hnbmtxa2dmZGt3eHVkcGR5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2NjAwNjEyMDEsImV4cCI6MTk3NTYzNzIwMX0.PWaLx9CyI6jaOzBx-1JPnId6_IrMlC4rYSEFZtsLwPw';
 
 const client = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
 /* Auth related functions */
+
+export const handleInserts = (payload) => {
+    console.log('Change received', payload); 
+};
 
 export function getUser() {
     return client.auth.user();
@@ -25,10 +29,14 @@ export function checkAuth() {
 }
 
 export async function signUpUser(email, password) {
-    return await client.auth.signUp({
+    const response = await client.auth.signUp({
         email,
         password,
     });
+    const user = await getUser();
+    await client.from('chat_profiles').insert({ user_name: email, id: user.id });
+    
+    return response;
 }
 
 export async function signInUser(email, password) {
@@ -43,3 +51,44 @@ export async function signOutUser() {
 }
 
 /* Data functions */
+export async function insertChat(chatValue) {
+    const response = await client.from('chat_comments').insert(chatValue);
+    return checkError(response);
+}
+
+export async function readComments() {
+    const response = await client.from('chat_comments').select('*');
+    return checkError(response);
+}
+
+function checkError({ data, error }) {
+    return error ? console.error(error) : data;
+}
+
+export async function updateName(name) {
+    const user = getUser();
+
+    const response = await client.from('chat_profiles').update({ user_name: name }).match({ id: user.id });
+
+    console.log(response);
+    return response;
+}
+
+export async function upsert(imageName, imageFile) {
+    const bucket = client.storage.from('avatar');
+
+    const { data, error } = await bucket.upload(imageName, imageFile, { cacheControl: '3600', upsert: true });
+
+    if (error) {
+        console.log(error);
+        return null;
+    }
+
+    const url = `${SUPABASE_URL}/storage/v1/object/public/${data.Key}`;
+
+    return url;
+}
+
+export async function handleNewComments(handleInserts){
+    await client.from('chat_comments').on('INSERT', handleInserts).subscribe();
+}

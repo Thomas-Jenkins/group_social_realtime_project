@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="icon" type="image/x-icon" href="assets/alchemy-favicon.png" />
+    <script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;600&family=Titillium+Web:wght@200;400;600&display=swap">
+    <link rel="stylesheet" href="../styles/reset.css" />
+    <link rel="stylesheet" href="../styles/global.css" />
+    <link rel="stylesheet" href="./profile.css" />
+    <title>Supabase Web App</title>
+</head>
+
+<body>
+    <header class="page-header">
+        <img class="logo" src="/assets/html_css_js.png">
+        <p class="title">User Profile</p>
+        <nav>
+            <a id="sign-out-link" href="../auth">Sign Out</a>
+            <a id="home-link" href="../">Home</a>
+        </nav>
+    </header>
+
+    <main>
+        <div id="profile-container">
+            <label>Name
+                <input id="name-input">
+
+            </label>
+            <button id="name-button">Enter Name</button>
+            <form action="" id="avatar-form">
+                <label>Avatar
+                    <input   
+                    type="file"
+                    name="avatar-input"
+                    placeholder="upload avatar"
+                    accept="image/*"
+                    required />
+                </label>
+                <button id="avatar-button">Submit Avatar</button>
+            </form>
+            <div id="image-display">
+                
+            </div>
+        </div>
+    </main>
+
+    <footer>&copy;2022 Alchemy Software Developer</footer>
+
+    <script type="module" src="./profile.js"></script>
+</body>
+
+</html>
