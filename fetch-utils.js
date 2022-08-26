@@ -5,6 +5,10 @@ const client = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
 /* Auth related functions */
 
+const handleInserts = (payload) => {
+    console.log('Change received', payload); 
+};
+
 export function getUser() {
     return client.auth.user();
 }
@@ -54,6 +58,7 @@ export async function insertChat(chatValue) {
 
 export async function readComments() {
     const response = await client.from('chat_comments').select('*');
+    const { data: chat_comments, error} = await client.from('chat_comments').on('INSERT', handleInserts).subscribe();
     return checkError(response);
 }
 
@@ -81,6 +86,9 @@ export async function upsert(imageName, imageFile) {
     }
 
     const url = `${SUPABASE_URL}/storage/v1/object/public/${data.Key}`;
-    
+
     return url;
 }
+
+
+const { data: chat_comments, error} = await client.from('chat_comments').on('INSERT', handleInserts).subscribe();

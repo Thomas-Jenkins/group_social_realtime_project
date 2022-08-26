@@ -25,16 +25,16 @@ chatButtonEl.addEventListener('click', async () => {
     const chatEntry = { contents: chatValue, username: user.email };
     const response = await insertChat(chatEntry);
     displayAllChats();
-    chatInputEl.reset();
+    chatInputEl.value = '';
     return response;
 });
 
 async function displayAllChats() {
     const chats = await readComments();
-    console.log(chats);
+    console.log('chats', chats);
     for (let chat of chats) {
         const temp = renderChat(chat);
-        console.log(temp);
+        console.log('temp', temp);
         liveChatEl.append(temp);
     
     }
@@ -51,5 +51,6 @@ function renderChat(chat) {
     return chatDiv;
 }
 
+window.addEventListener('load', async () => {
 
-console.log(user);
+});
