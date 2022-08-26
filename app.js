@@ -36,9 +36,7 @@ async function displayAllChats() {
         const temp = renderChat(chat);
         console.log('temp', temp);
         liveChatEl.append(temp);
-    
     }
-
 }
 
 function renderChat(chat) {
@@ -51,6 +49,3 @@ function renderChat(chat) {
     return chatDiv;
 }
 
-window.addEventListener('load', async () => {
-
-});

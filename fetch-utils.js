@@ -58,7 +58,6 @@ export async function insertChat(chatValue) {
 
 export async function readComments() {
     const response = await client.from('chat_comments').select('*');
-    const { data: chat_comments, error} = await client.from('chat_comments').on('INSERT', handleInserts).subscribe();
     return checkError(response);
 }
 
