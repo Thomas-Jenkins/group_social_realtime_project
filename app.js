@@ -1,6 +1,8 @@
 // importing other stuff, utility functions for:
 // working with supabase:
-import { checkAuth, signOutUser, getUser, insertChat, readComments } from './fetch-utils.js';
+
+
+import { checkAuth, signOutUser, getUser, insertChat, readComments, } from './fetch-utils.js';
 // pure rendering (data --> DOM):
 
 /*  "boiler plate" auth code */
@@ -31,10 +33,11 @@ chatButtonEl.addEventListener('click', async () => {
 
 async function displayAllChats() {
     const chats = await readComments();
-    console.log('chats', chats);
+    
+    // console.log('chats', chats);
     for (let chat of chats) {
         const temp = renderChat(chat);
-        console.log('temp', temp);
+        // console.log('temp', temp);
         liveChatEl.append(temp);
     }
 }
@@ -48,4 +51,5 @@ function renderChat(chat) {
     chatDiv.append(chatContent);
     return chatDiv;
 }
+
 

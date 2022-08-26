@@ -5,7 +5,7 @@ const client = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
 /* Auth related functions */
 
-const handleInserts = (payload) => {
+export const handleInserts = (payload) => {
     console.log('Change received', payload); 
 };
 
@@ -90,4 +90,4 @@ export async function upsert(imageName, imageFile) {
 }
 
 
-const { data: chat_comments, error} = await client.from('chat_comments').on('INSERT', handleInserts).subscribe();
+const { chat_comments } = await client.from('chat_comments').on('INSERT', handleInserts).subscribe();
