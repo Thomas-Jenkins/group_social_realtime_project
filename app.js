@@ -10,7 +10,6 @@ import { checkAuth, signOutUser, getUser, insertChat, readComments, handleNewCom
 checkAuth();
 // can optionally return the user:
 const user = checkAuth();
-
 displayAllChats();
 handleNewComments();
 // sign out link:
